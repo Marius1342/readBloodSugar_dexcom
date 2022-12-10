@@ -62,9 +62,7 @@ public partial class Read : ContentPage
             GlobalVars.haveRead = true;
             StartCountDown();
         }
-
         return true;
-        
     }
 
 
