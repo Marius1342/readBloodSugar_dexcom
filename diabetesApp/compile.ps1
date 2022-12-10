@@ -1,0 +1,1 @@
+﻿dotnet publish -f:net6.0-android -c:Release /p:AndroidSigningKeyPass=DIABETIS /p:AndroidSigningStorePass=DIABETIS
