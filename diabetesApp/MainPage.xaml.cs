@@ -1,18 +1,24 @@
 ﻿using diabetisApp;
+using System.Net.Sockets;
+using System.Net;
+using Android.Content;
 
 namespace diabetesApp;
 
 public partial class MainPage : ContentPage
 {
-	
 
-	public MainPage()
-	{
-		InitializeComponent();
+
+    public MainPage()
+    {
+        InitializeComponent();
+
         if (Preferences.ContainsKey("setup"))
         {
             autoRead();
         }
+
+
     }
     async void autoRead()
     {
