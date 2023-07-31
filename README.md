@@ -29,3 +29,6 @@ __*Legal disclaimer* I assume no liability and warranty for this app/product. Us
 
 ## Example to use this with a voice assistant 
 I personally use this app while riding my motorcycle. I have an intercom system installed, and I've created a routine for Google Assistant. When I say a specific keyword, Google Assistant sends me an SMS. Bixby is programmed to listen for this incoming SMS and then opens the app. The app, in turn, provides me with my blood sugar level information. You have to use the Smart Lock, otherwise you have to unlock your phone, when my intercom is connected my smartphone is unlocked
+
+## Help?
+Fell free to ask for help, just write an email km3814837@gmail.com

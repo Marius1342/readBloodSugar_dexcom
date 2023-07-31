@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace diabetesApp
 {
-     class DexcomApi
+    class DexcomApi
     {
         private string username = null;
         private string password = null;
@@ -36,6 +36,7 @@ namespace diabetesApp
             this.password = password;
             if (oldSessionId == null)
             {
+                //Get token
                 Task<bool> sucess = getSessionToken();
                 sucess.Wait();
                 if (sucess.Result)
@@ -76,6 +77,7 @@ namespace diabetesApp
             valuePairs.Add("accountName", username);
             valuePairs.Add("applicationId", APPID);
             string json = await PostData(accountUrl, valuePairs.ToString(Newtonsoft.Json.Formatting.None));
+            //{ is only there when there is an error
             if (json.Contains("{"))
             {
                 throw new Exception("Invalid password or username");
@@ -136,6 +138,7 @@ namespace diabetesApp
             }
             catch
             {
+                //Get new token
                 await getSessionToken();
                 string getUrl = getApiUrl("Publisher/ReadPublisherLatestGlucoseValues");
                 JObject json = new JObject();
