@@ -4,16 +4,17 @@ __*Legal disclaimer* I assume no liability and warranty for this app/product. Us
 ## Requirements
 - Android handy 
 - For better usability, use a Voice Assistant
-- Compatible with Bixby (Samsung) and Google Assistant
+- Compatible with Bixby (Samsung) 
+- Compatible with Win 10 / 11 Experimental
 
 ## Install
-- Install the app from bin/Release/net6.0-android using com.none.diabetesapp-Signed.apk
-1. Open the app, then go to Settings
-2. Enter your Username and Password
-3. Select a language
-4. Save the settings 
-5. Go into the Home menu, then go to Read.
-6. If the app crash or show an error, [check this out](#error-dexcom)
+1. [Install the app](https://github.com/Marius1342/readBloodSugar_dexcom/releases/tag/apk) or download the [win](https://github.com/Marius1342/readBloodSugar_dexcom/tree/master/diabetesApp/bin/Release)
+2. Open the app, then go to Settings
+3. Enter your Username and Password
+4. Select a language
+5. Save the settings 
+6. Go into the Home menu, then go to Read.
+7. If the app crash or show an error, [check this out](#error-dexcom)
 
 ## Compile your self
 1. You need VS Stdio 
@@ -31,7 +32,7 @@ __*Legal disclaimer* I assume no liability and warranty for this app/product. Us
 I personally use this app while riding my motorcycle. I have an intercom system installed, and I've created a routine for Google Assistant. When I say a specific keyword, Google Assistant sends me an SMS. Bixby is programmed to listen for this incoming SMS and then opens the app. The app, in turn, provides me with my blood sugar level information. You have to use the Smart Lock, otherwise you have to unlock your phone, when my intercom is connected my smartphone is unlocked
 
 ## What comes next?
-- :page_with_curl: Windows support full
+- :page_with_curl: UI update
 
 ## Help?
 Fell free to ask for help, just write an email km3814837@gmail.com
