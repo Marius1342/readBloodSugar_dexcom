@@ -1,7 +1,7 @@
 
 using diabetisApp;
 using Newtonsoft.Json.Linq;
-
+using System.Diagnostics;
 
 namespace diabetesApp;
 public partial class Read : ContentPage
@@ -11,15 +11,15 @@ public partial class Read : ContentPage
     public Read()
     {
         InitializeComponent();
-
-        ReadValue();
+        Task.Run(ReadValue);
     }
 
     public async Task<bool> ReadValue()
     {
+
         if (Preferences.ContainsKey("setup") == false)
         {
-            message.Text = "Please setup your Account in the Settings";
+            Helper.Invoke(() => { message.Text = "Please setup your Account in the Settings"; });
             return true;
         }
         DexcomApi dexcom;
@@ -27,7 +27,8 @@ public partial class Read : ContentPage
         //Check if all Preferences are set
         if (Preferences.ContainsKey("name") == false || Preferences.ContainsKey("password") == false)
         {
-            await DisplayAlert("error", "Please configure the your account", "Ok");
+
+            await Helper.Invoke(() => { DisplayAlert("error", "Please configure the your account", "Ok"); });
             return true;
         }
 
@@ -38,10 +39,12 @@ public partial class Read : ContentPage
         }
         catch
         {
-            await DisplayAlert("Error", "Invalid password or username", "OK");
+            await Helper.Invoke(() => { DisplayAlert("Error", "Invalid password or username", "OK"); });
             return true;
 
         }
+
+
 
 
 
@@ -51,6 +54,9 @@ public partial class Read : ContentPage
         JObject json = JObject.Parse(array.First.ToString(Newtonsoft.Json.Formatting.None));
         string value = json.GetValue("Value").ToString();
         string sign = json.GetValue("Trend").ToString();
+
+        //Set the value text to the value
+        Helper.Invoke(() => { message.Text = value; });
 
 
         DexcomApi.Language language;
@@ -80,11 +86,13 @@ public partial class Read : ContentPage
 
 
 
+
         if (GlobalVars.autoClose)
         {
             GlobalVars.autoClose = false;
             GlobalVars.haveRead = true;
-            StartCountDown();
+            Helper.Invoke(() => { StartCountDown(); });
+
         }
 
         return true;

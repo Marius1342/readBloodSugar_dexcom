@@ -23,6 +23,8 @@ namespace diabetesApp
         private const string APPID = "d8665ade-9673-4e27-9ff6-92db4ce13d13";
 
 
+        private static HttpClient client = new HttpClient(new NativeMessageHandler());
+
         public enum Language
         {
             EN,
@@ -52,6 +54,10 @@ namespace diabetesApp
             SessionId = sessionId;
 
         }
+
+
+
+
 
         private bool testSessionId(string id)
         {
@@ -124,11 +130,14 @@ namespace diabetesApp
             {
 
                 string getUrl = getApiUrl("Publisher/ReadPublisherLatestGlucoseValues");
-                JObject json = new JObject();
-                json.Add("maxCount", 1);
-                json.Add("minutes", 60);
-                json.Add("sessionId", sessionId);
-                var client = new HttpClient();
+                JObject json = new JObject
+                {
+                    { "maxCount", 1 },
+                    { "minutes", 60 },
+                    { "sessionId", sessionId }
+                };
+
+
                 data = await PostData(getUrl, json.ToString(Newtonsoft.Json.Formatting.None));
                 if (data.StartsWith("[") == false)
                 {
@@ -153,9 +162,6 @@ namespace diabetesApp
         }
         private async Task<string> PostData(string url, string json)
         {
-
-            var client = new HttpClient(new NativeMessageHandler());
-
             var response = client.PostAsync(
             url,
              new StringContent(json, Encoding.UTF8, "application/json"));

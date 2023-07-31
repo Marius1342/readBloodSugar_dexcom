@@ -4,5 +4,12 @@
         <name>diabetesApp</name>
     </assembly>
     <members>
+        <member name="M:diabetesApp.Helper.Invoke(System.Action)">
+            <summary>
+            Invokes into the main thread
+            </summary>
+            <param name="action">The function</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

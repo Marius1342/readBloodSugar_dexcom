@@ -5,13 +5,13 @@
              Title="Read">
     <VerticalStackLayout>
         <Label 
-            Text="Value"
+            Text="Wait for data, please wait"
             VerticalOptions="Center" 
             HorizontalOptions="Center"
             x:Name="message"/>
 
 
-        <Button Clicked="ShowStats">
+        <Button Clicked="ShowStats" Text="Get data again">
 
         </Button>
 
