@@ -1,6 +1,4 @@
 ﻿
-using Android.Content;
-using Android.SE.Omapi;
 using System.Net.Sockets;
 
 namespace diabetesApp;

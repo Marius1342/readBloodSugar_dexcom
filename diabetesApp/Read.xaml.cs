@@ -2,15 +2,15 @@
 using diabetisApp;
 using Newtonsoft.Json.Linq;
 
+
 namespace diabetesApp;
 public partial class Read : ContentPage
 {
     private bool countdownStop = false;
 
     public Read()
-	{
-		InitializeComponent();
-
+    {
+        InitializeComponent();
 
         ReadValue();
     }
@@ -23,6 +23,15 @@ public partial class Read : ContentPage
             return true;
         }
         DexcomApi dexcom;
+
+        //Check if all Preferences are set
+        if (Preferences.ContainsKey("name") == false || Preferences.ContainsKey("password") == false)
+        {
+            await DisplayAlert("error", "Please configure the your account", "Ok");
+            return true;
+        }
+
+
         try
         {
             dexcom = new DexcomApi(Preferences.Get("name", ""), Preferences.Get("password", ""), Preferences.Get("token", null));
@@ -43,7 +52,18 @@ public partial class Read : ContentPage
         string value = json.GetValue("Value").ToString();
         string sign = json.GetValue("Trend").ToString();
 
-        DexcomApi.Language language = (DexcomApi.Language)Preferences.Get("lang", ((int)DexcomApi.Language.EN));
+
+        DexcomApi.Language language;
+
+        //Check if language is set
+        if (Preferences.ContainsKey("lang") == false)
+        {
+            language = DexcomApi.Language.DE;
+        }
+        else
+        {
+            language = (DexcomApi.Language)Preferences.Get("lang", ((int)DexcomApi.Language.EN));
+        }
 
         sign = DexcomApi.ConvertSignToText(sign, language);
 
@@ -55,7 +75,11 @@ public partial class Read : ContentPage
         else
         {
             await TextToSpeech.SpeakAsync("Wert ist " + value + " mit dem Zeichen " + sign);
+
         }
+
+
+
         if (GlobalVars.autoClose)
         {
             GlobalVars.autoClose = false;
@@ -74,6 +98,7 @@ public partial class Read : ContentPage
     private async void StartCountDown()
     {
         int countdown = 0;
+        // wait 11 seconds
         while (countdown < 11 && countdownStop == false)
         {
             await Task.Delay(1000);
@@ -93,9 +118,10 @@ public partial class Read : ContentPage
     }
     public async void ShowStats(object sender, EventArgs e)
     {
+
         try
         {
-            await ReadValue();
+            ReadValue();
         }
         catch (Exception ex)
         {

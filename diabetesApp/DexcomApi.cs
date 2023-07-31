@@ -171,38 +171,80 @@ namespace diabetesApp
         public static string ConvertSignToText(string sign, Language lang = Language.EN)
         {
 
-            if (lang == Language.EN)
+            if (lang == Language.DE)
             {
-                return sign;
+                return convertSignGerman(sign);
             }
+            return convertSignEnglish(sign);
+
+
+        }
+
+
+        private static string convertSignEnglish(string sign)
+        {
             switch (sign)
             {
                 case "DoubleUp":
-                    sign = "doppel nach oben";
-                    break;
+                    return "double up";
+
                 case "SingleUp":
-                    sign = "einfach nach oben";
-                    break;
+                    return "just up";
+
                 case "FortyFiveUp":
-                    sign = "langsam nach oben";
-                    break;
+                    return "slowly up";
+
                 case "Flat":
-                    sign = "gleich bleibend";
-                    break;
+                    return "staying the same";
+
                 case "FortyFiveDown":
-                    sign = "langsam nach unten";
-                    break;
+                    return "slowly down";
+
                 case "SingleDown":
-                    sign = "einfach nach unten";
-                    break;
+                    return "just down";
+
                 case "DoubleDown":
-                    sign = "doppel nach unten";
-                    break;
+                    return "double down";
+
                 default:
-                    sign = sign;
-                    break;
+                    return sign;
+
+
             }
-            return sign;
+
+        }
+
+
+        private static string convertSignGerman(string sign)
+        {
+            switch (sign)
+            {
+                case "DoubleUp":
+                    return "doppel nach oben";
+
+                case "SingleUp":
+                    return "einfach nach oben";
+
+                case "FortyFiveUp":
+                    return "langsam nach oben";
+
+                case "Flat":
+                    return "gleich bleibend";
+
+                case "FortyFiveDown":
+                    return "langsam nach unten";
+
+                case "SingleDown":
+                    return "einfach nach unten";
+
+                case "DoubleDown":
+                    return "doppel nach unten";
+
+                default:
+                    return sign;
+
+
+            }
 
         }
 
