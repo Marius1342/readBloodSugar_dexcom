@@ -18,6 +18,7 @@ public partial class Settings : ContentPage
         Passwort.Text = Preferences.Get("password", "");
         Name.Text = Preferences.Get("name", "");
         autoRead.IsChecked = Preferences.Get("autoRead", false);
+        not_us.IsChecked = Preferences.Get("notUs", true);
         int english = Preferences.Get("lang", 0);
         if (english == 0)
         {
@@ -31,6 +32,14 @@ public partial class Settings : ContentPage
 
 
 
+    public void btnShowPassword(object sender, EventArgs e)
+    {
+        //Hide or Show password, inverse
+        Passwort.IsPassword = !Passwort.IsPassword;
+        //Update text
+        showPassword.Text = Passwort.IsPassword ? "Show" : "Hide";
+    }
+
     private async void Save(object sender, EventArgs e)
     {
         Preferences.Set("password", Passwort.Text);
@@ -39,7 +48,10 @@ public partial class Settings : ContentPage
         //Reverse
         Preferences.Set("lang", english_radio.IsChecked == true ? 0 : 1);
 
+        Preferences.Set("notUs", not_us.IsChecked);
+
         Preferences.Set("setup", "1");
+
 
         await DisplayAlert("Saved", "Settings are saved", "OK");
     }

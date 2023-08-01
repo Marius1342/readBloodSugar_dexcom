@@ -10,12 +10,16 @@
             HorizontalOptions="Start" />
         <Label Text="Username"></Label>
         <Entry BackgroundColor="White" TextColor="Blue" x:Name="Name"></Entry>
-        <Entry Placeholder="Password" PlaceholderColor="Red" BackgroundColor="White" TextColor="Blue" x:Name="Passwort"></Entry>
-
+        <Entry Placeholder="Password" PlaceholderColor="Red" BackgroundColor="White" TextColor="Blue" x:Name="Passwort" IsPassword="True"></Entry>
+        <Button Text="Show" Clicked="btnShowPassword" x:Name="showPassword"></Button>
         <Button Text="Save" Clicked="Save"></Button>
+        
         <Label Text="Auto read at startup"></Label>
-        <CheckBox x:Name="autoRead" ></CheckBox>
+        
+        <CheckBox  x:Name="autoRead"></CheckBox>
 
+        <Label Text="Not US"></Label>
+        <CheckBox x:Name="not_us"></CheckBox>
 
 
         <RadioButton Content="ENG" TextColor="Red" x:Name="english_radio">

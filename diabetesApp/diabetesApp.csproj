@@ -76,7 +76,14 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
+    
+    <!--  Import the languages  -->
+    <MauiAsset Include="Resources\Languages\*" LogicalName="%(Filename)%(Extension)" />
+    <MauiAsset Include="Resources\Languages\English.txt" />
+    <MauiAsset Include="Resources\Languages\German.txt" />
+
+
+  </ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="modernhttpclient" Version="2.4.2" />
@@ -90,6 +97,10 @@
 	  <MauiXaml Update="Settings.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="languages\" />
 	</ItemGroup>
 
 </Project>

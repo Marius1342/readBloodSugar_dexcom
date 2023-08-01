@@ -18,7 +18,7 @@ namespace diabetesApp
         public string SessionId = "";
 
         private const string EU_HOST = "shareous1.dexcom.com";
-        //private const string US_HOST = "share2.dexcom.com";
+        private const string US_HOST = "share2.dexcom.com";
         //From github 
         private const string APPID = "d8665ade-9673-4e27-9ff6-92db4ce13d13";
 
@@ -171,7 +171,11 @@ namespace diabetesApp
 
         private string getApiUrl(string resource)
         {
-            return $"https://{EU_HOST}/ShareWebServices/Services/{resource}";
+            if (Preferences.Get("notUs", true))
+            {
+                return $"https://{EU_HOST}/ShareWebServices/Services/{resource}";
+            }
+            return $"https://{US_HOST}/ShareWebServices/Services/{resource}";
         }
 
         public static string ConvertSignToText(string sign, Language lang = Language.EN)
