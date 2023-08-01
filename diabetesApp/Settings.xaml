@@ -18,8 +18,8 @@
         
         <CheckBox  x:Name="autoRead"></CheckBox>
 
-        <Label Text="Not US"></Label>
-        <CheckBox x:Name="not_us"></CheckBox>
+        <Label Text="US"></Label>
+        <CheckBox x:Name="US"></CheckBox>
 
 
         <RadioButton Content="ENG" TextColor="Red" x:Name="english_radio">

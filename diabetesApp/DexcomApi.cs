@@ -171,7 +171,7 @@ namespace diabetesApp
 
         private string getApiUrl(string resource)
         {
-            if (Preferences.Get("notUs", true))
+            if (Preferences.Get("US", false) == false)
             {
                 return $"https://{EU_HOST}/ShareWebServices/Services/{resource}";
             }

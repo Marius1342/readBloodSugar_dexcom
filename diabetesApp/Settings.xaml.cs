@@ -18,7 +18,7 @@ public partial class Settings : ContentPage
         Passwort.Text = Preferences.Get("password", "");
         Name.Text = Preferences.Get("name", "");
         autoRead.IsChecked = Preferences.Get("autoRead", false);
-        not_us.IsChecked = Preferences.Get("notUs", true);
+        US.IsChecked = Preferences.Get("US", false);
         int english = Preferences.Get("lang", 0);
         if (english == 0)
         {
@@ -48,7 +48,7 @@ public partial class Settings : ContentPage
         //Reverse
         Preferences.Set("lang", english_radio.IsChecked == true ? 0 : 1);
 
-        Preferences.Set("notUs", not_us.IsChecked);
+        Preferences.Set("US", US.IsChecked);
 
         Preferences.Set("setup", "1");
 

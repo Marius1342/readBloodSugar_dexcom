@@ -79,6 +79,12 @@
     
     <!--  Import the languages  -->
     <MauiAsset Include="Resources\Languages\*" LogicalName="%(Filename)%(Extension)" />
+    <AndroidResource Remove="languages\**" />
+    <Compile Remove="languages\**" />
+    <EmbeddedResource Remove="languages\**" />
+    <MauiCss Remove="languages\**" />
+    <MauiXaml Remove="languages\**" />
+    <None Remove="languages\**" />
     <MauiAsset Include="Resources\Languages\English.txt" />
     <MauiAsset Include="Resources\Languages\German.txt" />
 
@@ -97,10 +103,6 @@
 	  <MauiXaml Update="Settings.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="languages\" />
 	</ItemGroup>
 
 </Project>

@@ -28,6 +28,11 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
+
+win10-x64/
+
+[Rr]eleases/
+
 #FOR UPLOADING
 #[Bb]in/
 [Oo]bj/
