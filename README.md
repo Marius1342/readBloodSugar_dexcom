@@ -34,6 +34,7 @@ I personally use this app while riding my motorcycle. I have an intercom system 
 ## What comes next?
 - :page_with_curl: UI update
 - :page_with_curl: Button to select region US OR non US
+- :page_with_curl: Listen on SMS message
 
 ## Help?
 Fell free to ask for help, just write an email km3814837@gmail.com

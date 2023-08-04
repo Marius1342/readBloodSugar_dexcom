@@ -10,7 +10,8 @@ public partial class Read : ContentPage
 
     public Read()
     {
-        InitializeComponent();
+            InitializeComponent();
+        
         Task.Run(ReadValue);
     }
 
@@ -122,7 +123,12 @@ public partial class Read : ContentPage
 
         //Auto close
         GlobalVars.haveRead = false;
-        Application.Current.Quit();
+
+        Process.GetCurrentProcess().CloseMainWindow();
+
+
+        //Old
+        //Application.Current.Quit();
     }
     public async void ShowStats(object sender, EventArgs e)
     {

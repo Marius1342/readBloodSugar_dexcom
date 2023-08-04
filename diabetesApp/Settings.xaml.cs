@@ -28,6 +28,12 @@ public partial class Settings : ContentPage
         {
             german_radio.IsChecked = true;
         }
+
+        //SMS
+        checkSms.IsChecked = Preferences.Get("checkSms", false);
+        telnumber.Text = Preferences.Get("telnumber", "");
+        smsContent.Text = Preferences.Get("smsContent", "");
+        
     }
 
 
@@ -42,6 +48,11 @@ public partial class Settings : ContentPage
 
     private async void Save(object sender, EventArgs e)
     {
+        //SMS 
+        Preferences.Set("checkSms", checkSms.IsChecked);
+        Preferences.Set("telnumber", telnumber.Text);
+        Preferences.Set("smsContent", smsContent.Text);
+
         Preferences.Set("password", Passwort.Text);
         Preferences.Set("name", Name.Text);
         Preferences.Set("autoRead", autoRead.IsChecked);

@@ -12,7 +12,7 @@
         <Entry BackgroundColor="White" TextColor="Blue" x:Name="Name"></Entry>
         <Entry Placeholder="Password" PlaceholderColor="Red" BackgroundColor="White" TextColor="Blue" x:Name="Passwort" IsPassword="True"></Entry>
         <Button Text="Show" Clicked="btnShowPassword" x:Name="showPassword"></Button>
-        <Button Text="Save" Clicked="Save"></Button>
+        
         
         <Label Text="Auto read at startup"></Label>
         
@@ -21,10 +21,19 @@
         <Label Text="US"></Label>
         <CheckBox x:Name="US"></CheckBox>
 
-
         <RadioButton Content="ENG" TextColor="Red" x:Name="english_radio">
         </RadioButton>
         <RadioButton Content="DE" TextColor="Red" x:Name="german_radio">
         </RadioButton>
+        
+        <!--  Check for SMS  -->
+
+        <Label>Check for SMS/Open when SMS is received</Label>
+        <CheckBox x:Name="checkSms"></CheckBox>
+        <Entry BackgroundColor="White" TextColor="Blue" Text="The telnumber from the sender" x:Name="telnumber"></Entry>
+        <Entry BackgroundColor="White" TextColor="Blue" Text="The content of the SMS" x:Name="smsContent"></Entry>
+
+
+        <Button Text="Save" Clicked="Save"></Button>
     </VerticalStackLayout>
 </ContentPage>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-android;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net6.0-android</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -43,6 +43,7 @@
 	  <AndroidSigningStorePass></AndroidSigningStorePass>
 	  <AndroidSigningKeyAlias></AndroidSigningKeyAlias>
 	  <AndroidSigningKeyPass></AndroidSigningKeyPass>
+	  <AndroidLinkTool>r8</AndroidLinkTool>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-android|AnyCPU'">
@@ -50,6 +51,7 @@
 	  <AndroidSigningStorePass></AndroidSigningStorePass>
 	  <AndroidSigningKeyAlias></AndroidSigningKeyAlias>
 	  <AndroidSigningKeyPass></AndroidSigningKeyPass>
+	  <AndroidLinkTool>r8</AndroidLinkTool>
 	</PropertyGroup>
 
 	<PropertyGroup>
