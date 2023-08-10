@@ -1,4 +1,3 @@
-
 using diabetisApp;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
@@ -124,11 +123,17 @@ public partial class Read : ContentPage
         //Auto close
         GlobalVars.haveRead = false;
 
-        Process.GetCurrentProcess().CloseMainWindow();
+  
+        
+#if ANDROID
+        //Android minimize the app
+        var activity = Platform.CurrentActivity;
+        activity.MoveTaskToBack(true);
+#else 
+//Only in windows close the app
+        Application.Current.Quit();
+#endif
 
-
-        //Old
-        //Application.Current.Quit();
     }
     public async void ShowStats(object sender, EventArgs e)
     {

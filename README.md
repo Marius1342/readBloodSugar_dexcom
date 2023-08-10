@@ -21,6 +21,14 @@ __*Legal disclaimer* I assume no liability and warranty for this app/product. Us
 2. Just execute the "compile.ps1"
 3. Install the app
 
+## Listen on SMS
+1. Go into the settings and check the button, Check for SMS
+2. Enter your own telephone number like +4916, without spaces and 0
+3. Write in the last field the text, like DEXCOM, be careful all without white spaces
+4. Save 
+5. Setup in google a routine to send this SMS to your self with the text from step 3, like a voice routine
+6. Test it
+7. Tipp disable the Auto read at startup
 
 ## Error-Dexcom
 1. Check if your dexcom share is active. (Invite somebody, you don't have to accept the request.)
@@ -33,8 +41,6 @@ I personally use this app while riding my motorcycle. I have an intercom system 
 
 ## What comes next?
 - :page_with_curl: UI update
-- :page_with_curl: Button to select region US OR non US
-- :page_with_curl: Listen on SMS message
 
 ## Help?
 Fell free to ask for help, just write an email km3814837@gmail.com

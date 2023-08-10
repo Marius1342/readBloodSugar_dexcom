@@ -27,7 +27,17 @@ public partial class MainPage : ContentPage
         {
             return;
         }
+        Guid oldId = Application.Current.MainPage.Id;
         await Task.Delay(2000);
+
+
+        //Checks if user is using this future
+        if (Application.Current.MainPage.Id != oldId) {
+            //User is active
+            return;
+        }
+
+
         GlobalVars.autoClose = true;
         Read(this, null);
 
