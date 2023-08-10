@@ -8,7 +8,7 @@ __*Legal disclaimer* I assume no liability and warranty for this app/product. Us
 - Compatible with Win 10 / 11 Experimental
 
 ## Install
-1. [Install the app](https://github.com/Marius1342/readBloodSugar_dexcom/releases/tag/apk) or download the [win](https://github.com/Marius1342/readBloodSugar_dexcom/tree/master/diabetesApp/bin/Release)
+1. [Install the app](https://github.com/Marius1342/readBloodSugar_dexcom/releases) or download the [win](https://github.com/Marius1342/readBloodSugar_dexcom/tree/master/diabetesApp/bin/Release)
 2. Open the app, then go to Settings
 3. Enter your Username and Password
 4. Select a language
