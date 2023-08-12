@@ -16,7 +16,7 @@
             <Button Text="Read" Clicked="Read">
 
             </Button>
-            <Button x:Name="updateButton" Text="Open update site">
+            <Button IsVisible="False" x:Name="updateButton" Clicked="updateButton_Clicked" Text="Open update site">
             </Button>
         </VerticalStackLayout>
     </ScrollView>

@@ -1,6 +1,7 @@
 ﻿using diabetisApp;
 using System.Net.Sockets;
 using System.Net;
+using diabetesApp.Classes;
 //using Android.Content;
 
 namespace diabetesApp;
@@ -8,17 +9,24 @@ namespace diabetesApp;
 public partial class MainPage : ContentPage
 {
 
-
+    private Updater updater = new Updater();
     public MainPage()
     {
         InitializeComponent();
-
+        Task.Run(async () =>
+        {
+            if (await updater.newVersion())
+            {
+                await Helper.Invoke(() => updateButton.IsVisible = true);
+            }
+        });
         //Auto read
         if (Preferences.ContainsKey("setup") && Preferences.Get("autoRead", false))
         {
             autoRead();
 
             //Check for update
+            
 
 
         }
@@ -60,7 +68,7 @@ public partial class MainPage : ContentPage
 
     private void updateButton_Clicked(object sender, EventArgs e)
     {
-
+        updater.openDownloadSite();
     }
 }
 
