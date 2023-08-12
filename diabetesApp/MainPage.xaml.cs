@@ -17,6 +17,10 @@ public partial class MainPage : ContentPage
         if (Preferences.ContainsKey("setup") && Preferences.Get("autoRead", false))
         {
             autoRead();
+
+            //Check for update
+
+
         }
 
 
@@ -54,5 +58,9 @@ public partial class MainPage : ContentPage
         await Application.Current.MainPage.Navigation.PushAsync(new Read());
     }
 
+    private void updateButton_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }
 
