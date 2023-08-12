@@ -41,6 +41,7 @@ I personally use this app while riding my motorcycle. I have an intercom system 
 
 ## What comes next?
 - :page_with_curl: UI update
+- :page_with_curl: Update info for android
 
 ## Help?
 Fell free to ask for help, just write an email km3814837@gmail.com

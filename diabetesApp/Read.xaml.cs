@@ -9,8 +9,8 @@ public partial class Read : ContentPage
 
     public Read()
     {
-            InitializeComponent();
-        
+        InitializeComponent();
+
         Task.Run(ReadValue);
     }
 
@@ -19,7 +19,7 @@ public partial class Read : ContentPage
 
         if (Preferences.ContainsKey("setup") == false)
         {
-            Helper.Invoke(() => { message.Text = "Please setup your Account in the Settings"; });
+            await Helper.Invoke(() => { message.Text = "Please setup your Account in the Settings"; });
             return true;
         }
         DexcomApi dexcom;
@@ -56,7 +56,7 @@ public partial class Read : ContentPage
         string sign = json.GetValue("Trend").ToString();
 
         //Set the value text to the value
-        Helper.Invoke(() => { message.Text = value; });
+        await Helper.Invoke(() => { message.Text = value; });
 
 
         DexcomApi.Language language;
@@ -91,7 +91,7 @@ public partial class Read : ContentPage
         {
             GlobalVars.autoClose = false;
             GlobalVars.haveRead = true;
-            Helper.Invoke(() => { StartCountDown(); });
+            await Helper.Invoke(() => { StartCountDown(); });
 
         }
 
@@ -123,8 +123,8 @@ public partial class Read : ContentPage
         //Auto close
         GlobalVars.haveRead = false;
 
-  
-        
+
+
 #if ANDROID
         //Android minimize the app
         var activity = Platform.CurrentActivity;
@@ -140,7 +140,7 @@ public partial class Read : ContentPage
 
         try
         {
-            ReadValue();
+            await ReadValue();
         }
         catch (Exception ex)
         {
