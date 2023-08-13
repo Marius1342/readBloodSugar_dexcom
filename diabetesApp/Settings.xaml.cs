@@ -1,3 +1,6 @@
+using diabetesApp.Classes;
+using diabetisApp;
+
 namespace diabetesApp;
 
 public partial class Settings : ContentPage
@@ -6,6 +9,13 @@ public partial class Settings : ContentPage
     {
         InitializeComponent();
         ReadSettings();
+
+        if(Logger.LogCount > 0)
+        {
+            //errorEmailSend.Text = LanguageModel.getContent(1);
+            errorEmailSend.Text = "Send error report";
+            errorEmailSend.IsEnabled = true;
+        }
     }
 
     public void ReadSettings()
@@ -33,11 +43,32 @@ public partial class Settings : ContentPage
         checkSms.IsChecked = Preferences.Get("checkSms", false);
         telnumber.Text = Preferences.Get("telnumber", "");
         smsContent.Text = Preferences.Get("smsContent", "");
-        
+
+        //Only android
+#if ANDROID
+    askPermissions();
+#endif
     }
 
 
+    private async void askPermissions()
+    {
+        PermissionStatus status = await Permissions.CheckStatusAsync<Permissions.Sms>();
+        if(status == PermissionStatus.Granted)
+        {
+            return;
+        }
 
+        //Ask for permission
+        status = await Permissions.RequestAsync<Permissions.Sms>();
+        if(status == PermissionStatus.Granted)
+        {
+            return;
+        }
+
+        await DisplayAlert("Warning", "The listen function for the sms does not work", "Ok");
+
+    }
     public void btnShowPassword(object sender, EventArgs e)
     {
         //Hide or Show password, inverse
@@ -67,5 +98,28 @@ public partial class Settings : ContentPage
         await DisplayAlert("Saved", "Settings are saved", "OK");
     }
 
+    private async void errorEmailSend_Clicked(object sender, EventArgs e)
+    {
+        if (Email.Default.IsComposeSupported)
+        {
 
+            string subject = "Found some bug";
+            string body = "I found some bugs" + Environment.NewLine;
+
+            body += Logger.GetReportForEmail();
+
+
+            string[] recipients = new[] {GlobalVars.DEV_EMAIL};
+
+            var message = new EmailMessage
+            {
+                Subject = subject,
+                Body = body,
+                BodyFormat = EmailBodyFormat.PlainText,
+                To = new List<string>(recipients)
+            };
+
+            await Email.Default.ComposeAsync(message);
+        }
+    }
 }

@@ -9,12 +9,16 @@ namespace diabetisApp
         public const string UPDATE_URL = "https://github.com/Marius1342/readBloodSugar_dexcom/releases/";
         public const string UPDATE_CHECK_URL = "https://raw.githubusercontent.com/Marius1342/readBloodSugar_dexcom/master/versions.txt";
 #if WINDOWS
-        public const string PLATFROM = "WINDOWS";
+        public const string PLATFORM = "WINDOWS";
 #elif ANDROID
- public const string PLATFROM = "ANDROID";
+        public const string PLATFORM = "ANDROID";
 #else
-public const string PLATFROM = "UNKNOWN";
-#error Cannot find current platfrom !
+public const string PLATFORM = "UNKNOWN";
+
 #endif
+        public const string DEV_EMAIL = "km3814837@gmail.com";
+
+
+
     }
 }

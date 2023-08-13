@@ -9,17 +9,17 @@ namespace diabetesApp;
 public partial class MainPage : ContentPage
 {
 
-    private Updater updater = new Updater();
+
     public MainPage()
     {
         InitializeComponent();
-        Task.Run(async () =>
-        {
-            if (await updater.newVersion())
-            {
-                await Helper.Invoke(() => updateButton.IsVisible = true);
-            }
-        });
+
+        version.Text ="Version: " +  GlobalVars.VERSION;
+
+
+        CheckNewVersion();
+
+
         //Auto read
         if (Preferences.ContainsKey("setup") && Preferences.Get("autoRead", false))
         {
@@ -33,6 +33,24 @@ public partial class MainPage : ContentPage
 
 
     }
+
+    private async void CheckNewVersion()
+    {
+
+
+        Logger.Log("Check for new version");
+        if (await Updater.NewVersion())
+        {
+            Logger.Log("New version found");
+            updateButton.IsVisible = true;
+        }
+        else
+        {
+            Logger.Log("No new version");
+            updateButton.IsVisible = false;
+        }
+    }
+
     async void autoRead()
     {
         if (GlobalVars.haveRead)
@@ -68,7 +86,7 @@ public partial class MainPage : ContentPage
 
     private void updateButton_Clicked(object sender, EventArgs e)
     {
-        updater.openDownloadSite();
+        Updater.openDownloadSite();
     }
 }
 

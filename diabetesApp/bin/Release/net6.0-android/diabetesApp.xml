@@ -4,6 +4,12 @@
         <name>diabetesApp</name>
     </assembly>
     <members>
+        <member name="M:diabetesApp.Classes.Logging.Log.ToString">
+            <summary>
+            Converts the Log Object to a string of log, for email ready
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:diabetesApp.Helper.Invoke(System.Action)">
             <summary>
             Invokes into the main thread

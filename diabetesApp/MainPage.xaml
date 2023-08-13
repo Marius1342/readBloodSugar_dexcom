@@ -18,6 +18,8 @@
             </Button>
             <Button IsVisible="False" x:Name="updateButton" Clicked="updateButton_Clicked" Text="Open update site">
             </Button>
+
+            <Label x:Name="version"></Label>
         </VerticalStackLayout>
     </ScrollView>
 

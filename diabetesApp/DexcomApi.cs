@@ -12,7 +12,6 @@ namespace diabetesApp
     {
         private string username = null;
         private string password = null;
-        private string server = null;
         private string sessionId = null;
 
         public string SessionId = "";
@@ -77,7 +76,7 @@ namespace diabetesApp
 
         private async Task<string> getAccountId()
         {
-            string accountUrl = getApiUrl("General/AuthenticatePublisherAccount");
+            string accountUrl = GetApiUrl("General/AuthenticatePublisherAccount");
             JObject valuePairs = new JObject();
             valuePairs.Add("password", password);
             valuePairs.Add("accountName", username);
@@ -107,7 +106,7 @@ namespace diabetesApp
             json.Add("applicationId", APPID);
             json.Add("accountId", id.Replace("\"", ""));
             json.Add("password", password);
-            string getUrl = getApiUrl("General/LoginPublisherAccountById");
+            string getUrl = GetApiUrl("General/LoginPublisherAccountById");
             string re = await PostData(getUrl, json.ToString(Newtonsoft.Json.Formatting.None));
 
             sessionId = re.Replace("\"", "");
@@ -129,7 +128,7 @@ namespace diabetesApp
             try
             {
 
-                string getUrl = getApiUrl("Publisher/ReadPublisherLatestGlucoseValues");
+                string getUrl = GetApiUrl("Publisher/ReadPublisherLatestGlucoseValues");
                 JObject json = new JObject
                 {
                     { "maxCount", 1 },
@@ -149,7 +148,7 @@ namespace diabetesApp
             {
                 //Get new token
                 await getSessionToken();
-                string getUrl = getApiUrl("Publisher/ReadPublisherLatestGlucoseValues");
+                string getUrl = GetApiUrl("Publisher/ReadPublisherLatestGlucoseValues");
                 JObject json = new JObject();
                 json.Add("maxCount", 1);
                 json.Add("minutes", 60);
@@ -169,7 +168,7 @@ namespace diabetesApp
         }
 
 
-        private string getApiUrl(string resource)
+        private string GetApiUrl(string resource)
         {
             if (Preferences.Get("US", false) == false)
             {
@@ -183,15 +182,15 @@ namespace diabetesApp
 
             if (lang == Language.DE)
             {
-                return convertSignGerman(sign);
+                return ConvertSignGerman(sign);
             }
-            return convertSignEnglish(sign);
+            return ConvertSignEnglish(sign);
 
 
         }
 
 
-        private static string convertSignEnglish(string sign)
+        private static string ConvertSignEnglish(string sign)
         {
             switch (sign)
             {
@@ -225,7 +224,7 @@ namespace diabetesApp
         }
 
 
-        private static string convertSignGerman(string sign)
+        private static string ConvertSignGerman(string sign)
         {
             switch (sign)
             {

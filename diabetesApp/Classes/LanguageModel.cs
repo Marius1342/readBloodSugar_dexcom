@@ -44,7 +44,7 @@ namespace diabetesApp.Classes
                 //Check if exist
                 if (await FileSystem.Current.AppPackageFileExistsAsync(fileName) == false)
                 {
-                    Console.WriteLine("Error");
+                    Logger.Error($"Error with filesystem, filename: {fileName}");
                     continue;
                 }
 
@@ -64,7 +64,7 @@ namespace diabetesApp.Classes
 
                 if (success == false)
                 {
-                    Console.WriteLine("Error");
+                    Logger.Error($"Error with int: {lines[0]}");
                     continue;
                 }
 
@@ -96,7 +96,12 @@ namespace diabetesApp.Classes
             {
                 initModels().Wait();
             }
-            return models[(int)_language].ElementAt(id);
+            if (id < models[(int)_language].Length)
+            {
+                return models[(int)_language].ElementAt(id);
+            }
+            Logger.Error($"Cannot find entry {id} with language {(int)_language}, length: {models[(int)_language].Length}");
+            return "Error";
         }
 
 

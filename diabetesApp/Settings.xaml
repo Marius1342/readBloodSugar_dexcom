@@ -35,5 +35,9 @@
 
 
         <Button Text="Save" Clicked="Save"></Button>
+
+        <Button IsEnabled="False" Clicked="errorEmailSend_Clicked" x:Name="errorEmailSend"></Button>
+        
+        
     </VerticalStackLayout>
 </ContentPage>
