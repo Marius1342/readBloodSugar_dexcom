@@ -8,15 +8,17 @@ using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using ModernHttpClient;
 
 namespace diabetesApp.Classes
 {
     internal static class Updater
     {
 
+        //Needs 5 min to check if new version, GitHub caches all content for 5 min
     public static async Task<bool> NewVersion()
-        {          HttpClient client = new HttpClient();
+        {          HttpClient client = new HttpClient(new NativeMessageHandler());
+
             client.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue
             {
                 NoCache = true
