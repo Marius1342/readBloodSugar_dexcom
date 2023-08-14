@@ -1,5 +1,6 @@
 using diabetesApp.Classes;
 using diabetisApp;
+using Newtonsoft.Json.Linq;
 
 namespace diabetesApp;
 
@@ -10,7 +11,7 @@ public partial class Settings : ContentPage
         InitializeComponent();
         ReadSettings();
 
-        if(Logger.LogCount > 0)
+        if (Logger.LogCount > 0)
         {
             //errorEmailSend.Text = LanguageModel.getContent(1);
             errorEmailSend.Text = "Send error report";
@@ -54,14 +55,14 @@ public partial class Settings : ContentPage
     private async void askPermissions()
     {
         PermissionStatus status = await Permissions.CheckStatusAsync<Permissions.Sms>();
-        if(status == PermissionStatus.Granted)
+        if (status == PermissionStatus.Granted)
         {
             return;
         }
 
         //Ask for permission
         status = await Permissions.RequestAsync<Permissions.Sms>();
-        if(status == PermissionStatus.Granted)
+        if (status == PermissionStatus.Granted)
         {
             return;
         }
@@ -109,7 +110,7 @@ public partial class Settings : ContentPage
             body += Logger.GetReportForEmail();
 
 
-            string[] recipients = new[] {GlobalVars.DEV_EMAIL};
+            string[] recipients = new[] { GlobalVars.DEV_EMAIL };
 
             var message = new EmailMessage
             {

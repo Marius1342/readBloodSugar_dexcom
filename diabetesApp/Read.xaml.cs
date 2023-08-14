@@ -1,3 +1,4 @@
+using diabetesApp.Classes;
 using diabetisApp;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
@@ -76,11 +77,25 @@ public partial class Read : ContentPage
 
         if (language == DexcomApi.Language.EN)
         {
-            await TextToSpeech.SpeakAsync("Blood sugar is " + value + " with the sign " + sign);
+            try
+            {
+                await TextToSpeech.Default.SpeakAsync("Blood sugar is " + value + " with the sign " + sign);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"Error with TextToSpeech.SpeakAsync: {ex.Message}");
+            }
         }
         else
         {
-            await TextToSpeech.SpeakAsync("Wert ist " + value + " mit dem Zeichen " + sign);
+            try
+            {
+                await TextToSpeech.Default.SpeakAsync("Wert ist " + value + " mit dem Zeichen " + sign);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"Error with TextToSpeech.SpeakAsync: {ex.Message}");
+            }
 
         }
 
@@ -129,8 +144,8 @@ public partial class Read : ContentPage
         //Android minimize the app
         var activity = Platform.CurrentActivity;
         activity.MoveTaskToBack(true);
-#else 
-//Only in windows close the app
+#else
+        //Only in windows close the app
         Application.Current.Quit();
 #endif
 

@@ -36,6 +36,7 @@ __*Legal disclaimer* I assume no liability and warranty for this app/product. Us
 2. Username or Password id wrong
 3. The app is not update to date
 4. Dexcom closed the api 
+5. App cannot be installed, just delete the old and install the new. You have to reconfigure the app
 
 ## Example to use this with a voice assistant 
 I personally use this app while riding my motorcycle. I have an intercom system installed, and I've created a routine for Google Assistant. When I say a specific keyword, Google Assistant sends me an SMS. Bixby is programmed to listen for this incoming SMS and then opens the app. The app, in turn, provides me with my blood sugar level information. You have to use the Smart Lock, otherwise you have to unlock your phone, when my intercom is connected my smartphone is unlocked.
