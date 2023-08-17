@@ -22,7 +22,7 @@
     <ApplicationIdGuid>A0D4EB7B-49C1-4D89-A959-8D0F7EC64869</ApplicationIdGuid>
 
     <!-- Versions -->
-    <ApplicationDisplayVersion>1.1.2</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>1.1.3</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
 
     <!--Enable win 10 support-->
