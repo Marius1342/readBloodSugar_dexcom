@@ -11,7 +11,7 @@ public partial class Settings : ContentPage
         InitializeComponent();
         ReadSettings();
 
-        if (Logger.LogCount > 0)
+        if (Logger.ErrorCount > 0)
         {
             //errorEmailSend.Text = LanguageModel.getContent(1);
             errorEmailSend.Text = "Send error report";
@@ -104,7 +104,7 @@ public partial class Settings : ContentPage
         if (Email.Default.IsComposeSupported)
         {
 
-            string subject = "Found some bug";
+            string subject = "Found some bugs";
             string body = "I found some bugs" + Environment.NewLine;
 
             body += Logger.GetReportForEmail();

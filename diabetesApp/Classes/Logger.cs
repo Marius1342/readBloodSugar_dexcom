@@ -9,28 +9,41 @@ namespace diabetesApp.Classes
 {
     public static class Logger
     {
-         //All data
-         private static List<Log> text = new List<Log>();
+        //All data
+        private static List<Log> text = new List<Log>();
 
         private const int MAX_SIZE = 50;
 
+        public static int ErrorCount { get; private set; }
         public static int LogCount { get; internal set; }
 
         private static void AddLog(Log log)
         {
-            if(text.Count> MAX_SIZE)
+            if (text.Count > MAX_SIZE)
             {
                 text.RemoveAt(0);
             }
             text.Add(log);
 
             LogCount = text.Count;
+            if (log.level == Logging.Log.levels.Error)
+            {
+                ErrorCount++;
+            }
+        }
+
+        public static void ClearLog()
+        {
+            LogCount = 0;
+            ErrorCount = 0;
+            text.Clear();
+
         }
 
         public static void Log(string Text, [CallerMemberName] string memberName = "",
 [CallerLineNumber] int lineNumber = 0)
         {
-            Log log = new Log(Logging.Log.levels.Info, Text, lineNumber, 
+            Log log = new Log(Logging.Log.levels.Info, Text, lineNumber,
               memberName);
             AddLog(log);
         }
@@ -42,7 +55,7 @@ namespace diabetesApp.Classes
         }
         public static void Error(string Text, [CallerMemberName] string memberName = "",
 [CallerLineNumber] int lineNumber = 0)
-        { 
+        {
             Log log = new Log(Logging.Log.levels.Error, Text, lineNumber, memberName);
             AddLog(log);
         }
@@ -53,7 +66,7 @@ namespace diabetesApp.Classes
             string data = "";
             foreach (Log line in text)
             {
-                data+= line.ToString() + Environment.NewLine;
+                data += line.ToString() + Environment.NewLine;
             }
             return data;
         }

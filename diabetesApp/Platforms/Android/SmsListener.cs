@@ -1,14 +1,9 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.Content.PM;
 using Android.OS;
 using Android.Provider;
-using Android.Telephony;
-using System.Threading.Tasks;
-using static Android.Content.PM.PackageManager;
-using static System.Net.Mime.MediaTypeNames;
-using diabetisApp;
 using Newtonsoft.Json.Linq;
+using diabetesApp.Classes;
 
 namespace diabetesApp.Platforms.Android
 {
@@ -27,6 +22,7 @@ namespace diabetesApp.Platforms.Android
         {
             base.OnCreate();
             smsBroadcastReceiver = new SmsBroadcastReceiver();
+
         }
         public override void OnStart(Intent intent, int startId)
         {
@@ -55,7 +51,7 @@ namespace diabetesApp.Platforms.Android
     [IntentFilter(new string[] { "android.provider.Telephony.SMS_RECEIVED" }, Priority = (int)IntentFilterPriority.HighPriority)]
     public class SmsBroadcastReceiver : BroadcastReceiver
     {
-        public override  void OnReceive(Context context, Intent intent)
+        public override async void OnReceive(Context context, Intent intent)
         {
             if (Preferences.Get("checkSms", false) == false)
             {
@@ -70,29 +66,30 @@ namespace diabetesApp.Platforms.Android
                 {
                     foreach (var smsMessage in smsMessages)
                     {
+
                         string senderPhoneNumber = smsMessage.OriginatingAddress;
                         string text = smsMessage.MessageBody;
 
 
-                       
-                        
+
+
                         //Check if sms is from the configured sender
                         if (Preferences.Get("telnumber", "") != senderPhoneNumber)
                         {
                             continue;
                         }
                         //Check if sms content is the same as configured
-                        if(Preferences.Get("smsContent", "") != text)
+                        if (Preferences.Get("smsContent", "") != text)
                         {
                             continue;
                         }
-                        
+
 
                         //Open read 
                         DexcomApi dexcom;
 
                         //Check if all Preferences are set
-                        if (Preferences.ContainsKey("name") == false )
+                        if (Preferences.ContainsKey("name") == false)
                         {
                             return;
                         }
@@ -104,12 +101,13 @@ namespace diabetesApp.Platforms.Android
                         }
                         catch
                         {
+                            Logger.Error("Error while creating the DexcomApi in the service");
                             return;
 
                         }
 
 
-                        
+
 
 
                         Task<string> task = dexcom.getValue();
@@ -135,18 +133,23 @@ namespace diabetesApp.Platforms.Android
                         sign = DexcomApi.ConvertSignToText(sign, language);
 
 
+                        //Task is needed or the APP crashes 
+
                         if (language == DexcomApi.Language.EN)
                         {
-                            TextToSpeech.SpeakAsync("Blood sugar is " + value + " with the sign " + sign).Wait();
+                            await Task.Run(async () =>
+                            {
+                                TextToSpeech.SpeakAsync("Blood sugar is " + value + " with the sign " + sign).Wait();
+                            });
                         }
                         else
                         {
-                            TextToSpeech.SpeakAsync("Wert ist " + value + " mit dem Zeichen " + sign).Wait();
+                            await Task.Run(async () =>
+                            {
+                                TextToSpeech.SpeakAsync("Wert ist " + value + " mit dem Zeichen " + sign).Wait();
 
+                            });
                         }
-
-
-
 
 
 
