@@ -41,6 +41,7 @@ public partial class Settings : ContentPage
         }
 
         //SMS
+        readLoud.IsChecked = Preferences.Get("readLoud", true);
         checkSms.IsChecked = Preferences.Get("checkSms", false);
         telnumber.Text = Preferences.Get("telnumber", "");
         smsContent.Text = Preferences.Get("smsContent", "");
@@ -84,6 +85,8 @@ public partial class Settings : ContentPage
         Preferences.Set("checkSms", checkSms.IsChecked);
         Preferences.Set("telnumber", telnumber.Text);
         Preferences.Set("smsContent", smsContent.Text);
+
+        Preferences.Set("readLoud", readLoud.IsChecked);
 
         Preferences.Set("password", Passwort.Text);
         Preferences.Set("name", Name.Text);

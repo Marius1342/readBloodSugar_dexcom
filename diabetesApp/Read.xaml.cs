@@ -74,31 +74,36 @@ public partial class Read : ContentPage
 
         sign = DexcomApi.ConvertSignToText(sign, language);
 
-
-        if (language == DexcomApi.Language.EN)
+        if (Preferences.Get("readLoud", true))
         {
-            try
+            if (language == DexcomApi.Language.EN)
             {
-                await TextToSpeech.Default.SpeakAsync("Blood sugar is " + value + " with the sign " + sign);
+                try
+                {
+                    await TextToSpeech.Default.SpeakAsync("Blood sugar is " + value + " with the sign " + sign);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error($"Error with TextToSpeech.SpeakAsync: {ex.Message}");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Logger.Error($"Error with TextToSpeech.SpeakAsync: {ex.Message}");
+                try
+                {
+                    await TextToSpeech.Default.SpeakAsync("Wert ist " + value + " mit dem Zeichen " + sign);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error($"Error with TextToSpeech.SpeakAsync: {ex.Message}");
+                }
+
             }
         }
         else
         {
-            try
-            {
-                await TextToSpeech.Default.SpeakAsync("Wert ist " + value + " mit dem Zeichen " + sign);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error($"Error with TextToSpeech.SpeakAsync: {ex.Message}");
-            }
-
+            Logger.Log("No speak, readLoud is false or not defined");
         }
-
 
 
 
