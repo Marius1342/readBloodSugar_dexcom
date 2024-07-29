@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DiabetesReader.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+         Spacing="25"
+         Padding="30,0"
+         VerticalOptions="Center">
+
+            <Button Text="Settings" Clicked="Button_Clicked">
+
+
+            </Button>
+            <Button Text="Read" Clicked="Read">
+
+            </Button>
+            <Button IsVisible="False" x:Name="updateButton" Clicked="updateButton_Clicked" Text="Open update site">
+            </Button>
+
+            <Label x:Name="version"></Label>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
