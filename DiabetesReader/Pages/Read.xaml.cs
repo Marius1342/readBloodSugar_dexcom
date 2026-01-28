@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 
 namespace DiabetesReader.Pages;
+
 public partial class Read : ContentPage
 {
     private bool countdownStop = false;
@@ -29,7 +30,7 @@ public partial class Read : ContentPage
         if (Preferences.ContainsKey("name") == false || Preferences.ContainsKey("password") == false)
         {
 
-            await Helper.Invoke(() => { DisplayAlert("error", "Please configure the your account", "Ok"); });
+            await Helper.Invoke(async () => { await DisplayAlertAsync("error", "Please configure the your account", "Ok"); });
             return true;
         }
 
@@ -40,7 +41,7 @@ public partial class Read : ContentPage
         }
         catch
         {
-            await Helper.Invoke(() => { DisplayAlert("Error", "Invalid password or username", "OK"); });
+            await Helper.Invoke(async () => { await DisplayAlertAsync("Error", "Invalid password or username", "OK"); });
             return true;
 
         }
@@ -53,8 +54,8 @@ public partial class Read : ContentPage
         task.Wait();
         JArray array = JArray.Parse(task.Result);
         JObject json = JObject.Parse(array.First.ToString(Newtonsoft.Json.Formatting.None));
-        string value = json.GetValue("Value").ToString();
-        string sign = json.GetValue("Trend").ToString();
+        string? value = json.GetValue("Value").ToString();
+        string? sign = json.GetValue("Trend").ToString();
 
         //Set the value text to the value
         await Helper.Invoke(() => { message.Text = value; });
@@ -164,7 +165,7 @@ public partial class Read : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", ex.StackTrace, "OK");
+            await DisplayAlertAsync("Error", ex.StackTrace, "OK");
         }
     }
 }
